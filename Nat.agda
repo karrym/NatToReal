@@ -32,20 +32,13 @@ succ n * m = m + (n * m)
 
 +-rUnit : (n : ℕ) → n + zero ≡ n
 +-rUnit zero = refl
-+-rUnit (succ n) = begin cong succ (+-rUnit n)
++-rUnit (succ n) = cong succ (+-rUnit n)
 
 +-lUnit : (n : ℕ) → zero + n ≡ n
 +-lUnit _ = refl
 
 +-assoc : (n m l : ℕ) → n + (m + l) ≡ (n + m) + l
-+-assoc zero m l =
-    begin
-        zero + (m + l)
-    ≡⟨ refl ⟩
-        m + l
-    ≡⟨ refl ⟩
-        (zero + m) + l
-    ∎
++-assoc zero m l = refl
 +-assoc (succ n) m l = cong succ (+-assoc n m l)
 
 +-right : (n m : ℕ) → n + succ m ≡ succ (n + m)
